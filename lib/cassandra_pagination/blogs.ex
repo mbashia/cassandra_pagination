@@ -4,14 +4,14 @@ defmodule CassandraPagination.Blogs do
   require Logger
 
   def insert_blogs do
-
     for i <- 1..1000 do
       insert_blogs(gen_random_posts_statement(i))
     end
   end
 
   def gen_random_posts_statement(number) do
-      now = DateTime.utc_now() |> DateTime.to_iso8601()
+    now = DateTime.utc_now() |> DateTime.to_iso8601()
+
     """
     INSERT INTO #{@config[:keyspace]}.posts (id, title, body, inserted_at, updated_at)
     VALUES (uuid(), 'title#{number}', 'body#{number}', '#{now}', '#{now}');
@@ -30,13 +30,10 @@ defmodule CassandraPagination.Blogs do
 
         {:error, reason} ->
           Logger.error("Error: #{inspect(reason)}")
-          # factor in failed payments inserts
       end
     rescue
       e ->
         nil
-
-        # factor in failed payments inserts
     end
   end
 
@@ -50,5 +47,8 @@ defmodule CassandraPagination.Blogs do
       pid ->
         pid
     end
+  end
+
+  def fetch_posts() do
   end
 end
