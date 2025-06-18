@@ -2,8 +2,7 @@ defmodule CassandraPagination.Repo.Migrations.CreatePostsTable do
   use Ecto.Migration
 
   @config Application.compile_env(:cassandra_pagination, :xandra)
-  @xandra_config  Application.get_env(:cassandra_pagination, :xandra_config)
-
+  @xandra_config Application.get_env(:cassandra_pagination, :xandra_config)
 
   def up do
     conn = check_xandra_connection()
@@ -23,15 +22,15 @@ defmodule CassandraPagination.Repo.Migrations.CreatePostsTable do
     |> IO.inspect(label: "Cassandra keyspace")
 
     create_posts_statetement =
-    """
-    CREATE TABLE IF NOT EXISTS posts (
-      id uuid PRIMARY KEY,
-      title text,
-      body text,
-      inserted_at timestamp,
-      updated_at timestamp
-    )
-    """
+      """
+      CREATE TABLE IF NOT EXISTS posts (
+        id uuid PRIMARY KEY,
+        title text,
+        body text,
+        inserted_at timestamp,
+        updated_at timestamp
+      )
+      """
 
     Xandra.execute(conn, create_posts_statetement)
     |> case do
