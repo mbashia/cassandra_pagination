@@ -59,6 +59,16 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :cassandra_pagination, :xandra,
+  nodes: ["127.0.0.1:9042"],
+  pool_size: 10,
+  keyspace: "blogs",
+  decimal_format: :decimal
+
+config :cassandra_pagination, :xandra_config,
+  replication_strategy: "SimpleStrategy",
+  replication_options: %{"replication_factor" => "1"}
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
