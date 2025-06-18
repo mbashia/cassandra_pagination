@@ -5,7 +5,7 @@ defmodule CassandraPagination.Application do
 
   use Application
 
-  @config  Application.get_env(:cassandra_pagination, :xandra)
+  @config  Application.compile_env(:cassandra_pagination, :xandra)
 
   @impl true
   def start(_type, _args) do
