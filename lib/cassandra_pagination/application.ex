@@ -5,14 +5,13 @@ defmodule CassandraPagination.Application do
 
   use Application
 
-  @config  Application.compile_env(:cassandra_pagination, :xandra)
+  @config Application.compile_env(:cassandra_pagination, :xandra)
 
   @impl true
   def start(_type, _args) do
     children = [
       # Start the Telemetry supervisor
       CassandraPaginationWeb.Telemetry,
-
       {Xandra, @config ++ [name: :xandra_conn]},
       # Start the Ecto repository
       CassandraPagination.Repo,
