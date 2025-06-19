@@ -18,6 +18,7 @@ defmodule CassandraPaginationWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/posts", PostLive.Index, :index
   end
 
   # Other scopes may use custom stacks.

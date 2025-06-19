@@ -1,0 +1,24 @@
+<div class="max-w-4xl mx-auto p-6 space-y-6">
+  <%= for blog <- @blogs do %>
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+      <h2 class="text-xl font-semibold text-gray-900 mb-3 leading-tight">
+        {blog["title"]}
+      </h2>
+      <div class="text-gray-700 leading-relaxed">
+        {blog["body"]}
+      </div>
+      <div class="text-gray-700 leading-relaxed">
+        {blog["identifier"]}
+      </div>
+      <div class="mt-4 pt-4 border-t border-gray-100">
+        <span class="text-sm text-gray-500">
+          <!-- Add any metadata here like date, author, etc. -->
+        </span>
+      </div>
+    </article>
+  <% end %>
+
+  <div class="w-full flex justify-between">
+    <button phx-click="prev">Prev</button> <button phx-click="next">next</button>
+  </div>
+</div>
